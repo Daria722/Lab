@@ -16,5 +16,21 @@ public class Player
     public int Location { get; private set; }
     public State State { get; set; }= State.NotInGame;
     public int DistanceTraveled { get; private set; }
+
+    public Player(string name)
+    {
+        Name = name;
+        Location = -1;
+    }
+
+    public void SetPosition(int pos)
+    {
+        Location = pos;
+        State = State.Playing;
+    }
     
+    public void Move()
+    {
+        
+    }
 }
