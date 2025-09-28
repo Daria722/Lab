@@ -29,8 +29,12 @@ public class Player
         State = State.Playing;
     }
     
-    public void Move()
+    public void Move(int steps, int size)
     {
+        if (State == State.NotInGame) return;
+
+        Location = (Location + steps) % size;
+        if (Location < 0) Location += size;
         
     }
 }

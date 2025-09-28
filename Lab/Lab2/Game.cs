@@ -25,6 +25,23 @@ public class Game
         state = GameState.Start;
         history = new List<(int, int, int)>();
     }
-    
-    
+
+    private int GetDistance()
+    {
+        if (cat.State == State.NotInGame || mouse.State == State.NotInGame)
+            return -1;
+        
+    }
+
+    public void Run()
+    {
+        Console.WriteLine("Cat and Mouse\n");
+        Console.WriteLine("Введите команду (M x / C x)");
+        Console.WriteLine("При завершении нажмите Q");
+        Console.WriteLine("Начальная позиция кота: ");
+        cat.SetPosition(int.Parse(Console.ReadLine()));
+        
+        Console.WriteLine("Начальная позиция мыши: ");
+        mouse.SetPosition(int.Parse(Console.ReadLine()));
+    }
 }
