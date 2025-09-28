@@ -96,4 +96,17 @@ public class Game
             
         }
     }
+    
+    private void PrintSummary()
+    {
+        Console.WriteLine($"\nDistance travelled: Mouse {mouse.DistanceTraveled}  Cat {cat.DistanceTraveled}");
+        if (IsCaught())
+        {
+            Console.WriteLine($"Mouse caught at: {cat.Location}");
+        }
+        else
+        {
+            Console.WriteLine("Mouse evaded Cat");
+        }
+    }
 }

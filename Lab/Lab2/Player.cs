@@ -36,5 +36,6 @@ public class Player
         Location = (Location + steps) % size;
         if (Location < 0) Location += size;
         
+        DistanceTraveled +=Math.Abs(steps);
     }
 }
