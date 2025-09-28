@@ -39,6 +39,11 @@ public class Game
         int dist =GetDistance();
         history.Add((cat.Location, mouse.Location, dist));
     }
+
+    private bool IsCaught()
+    {
+        return cat.Location == mouse.Location;
+    }
     public void Run()
     {
         Console.WriteLine("Cat and Mouse\n");
@@ -50,5 +55,45 @@ public class Game
         Console.WriteLine("Начальная позиция мыши: ");
         mouse.SetPosition(int.Parse(Console.ReadLine()));
         SaveHistory();
+
+        while (state != GameState.End)
+        {
+            Console.WriteLine("Команда: ");
+            string input = Console.ReadLine()?.Trim().ToUpper();
+            
+            if (string.IsNullOrWhiteSpace(input)) continue;
+
+            if (input == "Q")
+            {
+                state = GameState.End;
+                break;
+            }
+
+            string[] parts = input.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            
+            if (parts.Length<2) continue;
+            char command = parts[0][0];
+            int steps = int.Parse(parts[1]);
+
+            switch (command)
+            {
+                case 'M':
+                    mouse.Move(steps, size);
+                    break;
+                case 'C':
+                    cat.Move(steps, size);
+                    break;
+            }
+            
+            SaveHistory();
+
+            if (IsCaught())
+            {
+                state = GameState.End;
+                break;
+            }
+            
+            
+        }
     }
 }
