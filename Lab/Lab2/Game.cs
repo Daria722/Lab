@@ -30,9 +30,15 @@ public class Game
     {
         if (cat.State == State.NotInGame || mouse.State == State.NotInGame)
             return -1;
-        
+        int d = Math.Abs(cat.Location - mouse.Location);
+        return Math.Min(d, size - d);
     }
 
+    private void SaveHistory()
+    {
+        int dist =GetDistance();
+        history.Add((cat.Location, mouse.Location, dist));
+    }
     public void Run()
     {
         Console.WriteLine("Cat and Mouse\n");
@@ -43,5 +49,6 @@ public class Game
         
         Console.WriteLine("Начальная позиция мыши: ");
         mouse.SetPosition(int.Parse(Console.ReadLine()));
+        SaveHistory();
     }
 }
