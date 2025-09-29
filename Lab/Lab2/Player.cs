@@ -27,13 +27,9 @@ public class Player
         State = State.Playing;
     }
     
-    public void Move(int steps, int size)
+    public void Move(int steps, int boardSize)
     {
-        if (State == State.NotInGame) return;
-
-        Location = (Location + steps) % size;
-        if (Location < 0) Location += size;
-        
+        Location = ((Location - 1 + steps) % boardSize + boardSize) % boardSize + 1;
         DistanceTraveled +=Math.Abs(steps);
     }
 }

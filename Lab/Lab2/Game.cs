@@ -27,14 +27,17 @@ public class Game
     {
         if (cat.State == State.NotInGame || mouse.State == State.NotInGame)
             return -1;
+        
         int d = Math.Abs(cat.Location - mouse.Location);
-        return Math.Min(d, size - d);
+        int clockwise = d;
+        int counterClockwise = size - d;
+        return Math.Min(clockwise, counterClockwise);
     }
 
     private void SaveHistory()
     {
         int dist =GetDistance();
-        history.Add((cat.Location, mouse.Location, dist));
+        history.Add((cat.State == State.NotInGame ? -1 : cat.Location, mouse.State== State.NotInGame ? -1 : mouse.Location, dist));
     }
 
     private bool IsCaught()
@@ -43,7 +46,6 @@ public class Game
     }
     public void Run()
     {
-        //Console.WriteLine("Cat and Mouse\n");
         Console.WriteLine("Введите команду (M x / C x)");
         Console.WriteLine("При завершении нажмите Q");
         Console.WriteLine("Начальная позиция кота: ");
@@ -99,8 +101,8 @@ public class Game
     private void PrintTable()
     {
         Console.WriteLine("Cat and Mouse");
-        Console.WriteLine("\nCat and Mouse Distance");
-        Console.WriteLine("---------------------------");
+        Console.WriteLine("\nCat Mouse Distance");
+        Console.WriteLine("------------------");
 
         foreach (var entry in history)
         {
@@ -109,7 +111,7 @@ public class Game
             string dist = entry.distance < 0 ? "??" : entry.distance.ToString();
             Console.WriteLine($"{catPos, -5}{mousePos, -7}{dist, -7}");
         }
-        Console.WriteLine("---------------------------");
+        Console.WriteLine("------------------");
     }
     private void PrintSummary()
     {

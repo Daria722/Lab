@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.Clear();
         Console.Write("Введите размер поля: ");
         int size = int.Parse(Console.ReadLine());
 
