@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Lab2;
+﻿namespace Lab2;
 
 public enum GameState
 {
@@ -46,7 +43,7 @@ public class Game
     }
     public void Run()
     {
-        Console.WriteLine("Cat and Mouse\n");
+        //Console.WriteLine("Cat and Mouse\n");
         Console.WriteLine("Введите команду (M x / C x)");
         Console.WriteLine("При завершении нажмите Q");
         Console.WriteLine("Начальная позиция кота: ");
@@ -80,6 +77,7 @@ public class Game
                 case 'M':
                     mouse.Move(steps, size);
                     break;
+                
                 case 'C':
                     cat.Move(steps, size);
                     break;
@@ -92,11 +90,27 @@ public class Game
                 state = GameState.End;
                 break;
             }
-            
-            
         }
+        
+        PrintTable();
+        PrintSummary();
     }
     
+    private void PrintTable()
+    {
+        Console.WriteLine("Cat and Mouse");
+        Console.WriteLine("\nCat and Mouse Distance");
+        Console.WriteLine("---------------------------");
+
+        foreach (var entry in history)
+        {
+            string catPos = entry.catPos == -1 ? "??" : entry.catPos.ToString();
+            string mousePos = entry.mousePas == -1 ? "??" : entry.mousePas.ToString();
+            string dist = entry.distance < 0 ? "??" : entry.distance.ToString();
+            Console.WriteLine($"{catPos, -5}{mousePos, -7}{dist, -7}");
+        }
+        Console.WriteLine("---------------------------");
+    }
     private void PrintSummary()
     {
         Console.WriteLine($"\nDistance travelled: Mouse {mouse.DistanceTraveled}  Cat {cat.DistanceTraveled}");
