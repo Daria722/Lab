@@ -29,6 +29,8 @@ public class Player
     
     public void Move(int steps, int boardSize)
     {
+        if (State != State.Playing) return;
+        
         Location = ((Location - 1 + steps) % boardSize + boardSize) % boardSize + 1;
         DistanceTraveled +=Math.Abs(steps);
     }
