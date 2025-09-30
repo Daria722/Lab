@@ -13,10 +13,12 @@ public class Game
     private GameState state;
 
     private List<(int catPos, int mousePas, int distance)> history;
-
-    public Game(int size)
+    private string inputFile;
+    private string outputFile;
+    public Game(string inputFile, string outputFile)
     {
-        this.size = size;
+        this.inputFile = inputFile;
+        this.outputFile = outputFile;
         cat = new Player("Cat");
         mouse = new Player("Mouse");
         state = GameState.Start;
@@ -26,12 +28,9 @@ public class Game
     private int GetDistance()
     {
         if (cat.State == State.NotInGame || mouse.State == State.NotInGame)
-            return -1;
+            return 0;
         
-        int d = Math.Abs(cat.Location - mouse.Location);
-        int clockwise = d;
-        int counterClockwise = size - d;
-        return Math.Min(clockwise, counterClockwise);
+        return Math.Abs(cat.Location - mouse.Location);
     }
 
     private void SaveHistory()
@@ -42,25 +41,20 @@ public class Game
 
     private bool IsCaught()
     {
-        return cat.Location == mouse.Location;
+        return cat.State == State.Playing && mouse.State == State.Playing &&cat.Location ==mouse.Location ;
     }
     public void Run()
     {
-        Console.WriteLine("Введите команду (M x / C x)");
-        Console.WriteLine("При завершении нажмите Q");
-        Console.WriteLine("Начальная позиция кота: ");
-        cat.SetPosition(int.Parse(Console.ReadLine()));
-        
-        Console.WriteLine("Начальная позиция мыши: ");
-        mouse.SetPosition(int.Parse(Console.ReadLine()));
-        SaveHistory();
+        string[] commands = File.ReadAllLines(inputFile);
+        if (commands.Length == 0) return;
 
-        while (state != GameState.End)
+        size = int.Parse(commands[0]);
+        
+        for (int i = 1; i < commands.Length && state != GameState.End; i++)
         {
-            Console.WriteLine("Команда: ");
-            string input = Console.ReadLine()?.Trim().ToUpper();
-            
-            if (string.IsNullOrWhiteSpace(input)) continue;
+            string input = commands[i].Trim().ToUpper();
+            if (string.IsNullOrWhiteSpace(input))
+                continue;
 
             if (input == "W")
             {
@@ -68,61 +62,76 @@ public class Game
                 break;
             }
 
-            string[] parts = input.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-            
-            if (parts.Length<2) continue;
+            if (input == "P")
+            {
+                SaveHistory();
+                if (IsCaught()) state = GameState.End;
+                continue;
+            }
+
+            string[] parts = input.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length < 2) continue;
+
             char command = parts[0][0];
-            int steps = int.Parse(parts[1]);
+            if (!int.TryParse(parts[1], out int steps))
+                continue;
 
             switch (command)
             {
                 case 'M':
+                    if (mouse.State == State.NotInGame)
+                        mouse.SetPosition(steps);
+                    else
                     mouse.Move(steps, size);
                     break;
                 
                 case 'C':
+                    if (cat.State == State.NotInGame)
+                        cat.SetPosition(steps);
+                    else
                     cat.Move(steps, size);
                     break;
             }
-            
-            SaveHistory();
 
             if (IsCaught())
             {
                 state = GameState.End;
-                break;
             }
         }
-        
-        PrintTable();
-        PrintSummary();
+
+        using (StreamWriter writer = new StreamWriter(outputFile))
+        {
+        PrintTable(writer);
+        PrintSummary(writer);
+        }
     }
     
-    private void PrintTable()
+    private void PrintTable(StreamWriter writer)
     {
-        Console.WriteLine("Cat and Mouse");
-        Console.WriteLine("\nCat Mouse Distance");
-        Console.WriteLine("------------------");
+        writer.WriteLine("Cat and Mouse");
+        writer.WriteLine("\nCat Mouse Distance");
+        writer.WriteLine("------------------");
 
         foreach (var entry in history)
         {
             string catPos = entry.catPos == -1 ? "??" : entry.catPos.ToString();
             string mousePos = entry.mousePas == -1 ? "??" : entry.mousePas.ToString();
-            string dist = entry.distance < 0 ? "??" : entry.distance.ToString();
-            Console.WriteLine($"{catPos, -5}{mousePos, -7}{dist, -7}");
+            string dist = (entry.catPos == -1 || entry.mousePas == -1) ? "" : entry.distance.ToString();
+            writer.WriteLine($"{catPos, 3}{mousePos, 6}{dist, 9}");
         }
-        Console.WriteLine("------------------");
+        writer.WriteLine("------------------");
     }
-    private void PrintSummary()
+    private void PrintSummary(StreamWriter writer)
     {
-        Console.WriteLine($"\nDistance travelled: Mouse {mouse.DistanceTraveled}  Cat {cat.DistanceTraveled}");
+        writer.WriteLine();
+        writer.WriteLine();
+        writer.WriteLine("Distance travelled: Mouse   Cat ");
+        writer.WriteLine($"{mouse.DistanceTraveled, 24}{cat.DistanceTraveled, 7}");
+        writer.WriteLine();
+        
         if (IsCaught())
-        {
-            Console.WriteLine($"Mouse caught at: {cat.Location}");
-        }
+            writer.WriteLine($"Mouse caught at: {cat.Location}");
         else
-        {
-            Console.WriteLine("Mouse evaded Cat");
+            writer.WriteLine("Mouse evaded Cat");
         }
     }
-}

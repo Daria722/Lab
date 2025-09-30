@@ -12,7 +12,7 @@ public class Player
 {
     public string Name { get; }
     public int Location { get; private set; }
-    public State State { get; set; }= State.NotInGame;
+    public State State { get; private set; }= State.NotInGame;
     public int DistanceTraveled { get; private set; }
 
     public Player(string name)
