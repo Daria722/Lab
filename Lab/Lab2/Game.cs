@@ -62,7 +62,7 @@ public class Game
             
             if (string.IsNullOrWhiteSpace(input)) continue;
 
-            if (input == "Q")
+            if (input == "W")
             {
                 state = GameState.End;
                 break;
