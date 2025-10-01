@@ -56,12 +56,6 @@ public class Game
             if (string.IsNullOrWhiteSpace(input))
                 continue;
 
-            if (input == "W")
-            {
-                state = GameState.End;
-                break;
-            }
-
             if (input == "P")
             {
                 SaveHistory();
