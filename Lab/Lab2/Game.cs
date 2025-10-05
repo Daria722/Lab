@@ -41,7 +41,23 @@ public class Game
 
     private bool IsCaught()
     {
-        return cat.State == State.Playing && mouse.State == State.Playing &&cat.Location ==mouse.Location ;
+        if (cat.State == State.Playing && mouse.State == State.Playing && cat.Location == mouse.Location)
+        {
+            if (mouse.AnabolikState == Anabolik.Prinyat)
+            {
+                cat.State = State.Looser;
+                mouse.State = State.Winner;
+                return true;
+            }
+            else
+            {
+                cat.State = State.Winner;
+                mouse.State = State.Looser;
+                return true;
+            }
+        }
+
+        return false;
     }
     public void Run()
     {
@@ -115,17 +131,27 @@ public class Game
         }
         writer.WriteLine("------------------");
     }
+
     private void PrintSummary(StreamWriter writer)
     {
         writer.WriteLine();
         writer.WriteLine();
         writer.WriteLine("Distance travelled: Mouse   Cat ");
-        writer.WriteLine($"{mouse.DistanceTraveled, 24}{cat.DistanceTraveled, 7}");
+        writer.WriteLine($"{mouse.DistanceTraveled,24}{cat.DistanceTraveled,7}");
         writer.WriteLine();
-        
-        if (IsCaught())
+
+        if (mouse.State == State.Looser)
+        {
             writer.WriteLine($"Mouse caught at: {cat.Location}");
+        }
+
+        else if (cat.State == State.Looser)
+        {
+            writer.WriteLine($"Cat was eaten at: {mouse.Location}");
+        }
         else
+        {
             writer.WriteLine("Mouse evaded Cat");
         }
     }
+}

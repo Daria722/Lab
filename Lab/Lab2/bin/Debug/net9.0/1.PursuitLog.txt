@@ -2,15 +2,13 @@ Cat and Mouse
 
 Cat Mouse Distance
 ------------------
- ??     2         
-  6    11        5
- 12    11        1
- 12     5        7
- 12    11        1
+ ??    ??         
+ ??     5         
+ 11     5        6
 ------------------
 
 
 Distance travelled: Mouse   Cat 
-                      28      7
+                       2      6
 
-Mouse caught at: 11
+Cat was eaten at: 5

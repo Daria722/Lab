@@ -8,12 +8,19 @@ public enum State
     NotInGame
 }
 
+public enum Anabolik
+{
+    Prinyat,
+    NePrinyat
+}
+
 public class Player
 {
     public string Name { get; }
     public int Location { get; private set; }
-    public State State { get; private set; }= State.NotInGame;
+    public State State { get; set; }= State.NotInGame;
     public int DistanceTraveled { get; private set; }
+    public Anabolik AnabolikState { get; private set; } = Anabolik.NePrinyat;
 
     public Player(string name)
     {
@@ -25,6 +32,7 @@ public class Player
     {
         Location = pos;
         State = State.Playing;
+       
     }
     
     public void Move(int steps, int boardSize)
@@ -33,5 +41,10 @@ public class Player
         
         Location = ((Location - 1 + steps) % boardSize + boardSize) % boardSize + 1;
         DistanceTraveled +=Math.Abs(steps);
+
+        if (Name == "Mouse" && Location == 5)
+        {
+            AnabolikState = Anabolik.Prinyat;
+        }
     }
 }
