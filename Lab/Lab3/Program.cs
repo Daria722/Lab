@@ -8,6 +8,7 @@ class Program
 
         string inputText = Console.ReadLine();
         
-        
+        TextParser parser = new TextParser();
+        Text text = parser.Parse(inputText);
     }
 }

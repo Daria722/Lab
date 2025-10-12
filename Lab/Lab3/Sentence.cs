@@ -18,6 +18,19 @@ public class Sentence
     {
         _items.Add(punctuation);
     }
-    
-    
+
+    public List<Word> GetWords()
+    {
+        var words = new List<Word>();
+        foreach (var item in _items)
+        {
+            if (item is Word word)
+            {
+                words.Add(word);
+            }
+        }
+
+        return words;
+
+    }
 }
