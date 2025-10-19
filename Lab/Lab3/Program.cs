@@ -8,11 +8,13 @@ class Program
         
         Text text = Token.ParseText();
         
-        Console.WriteLine($"\nРезультаты разделения:");
+        Console.WriteLine("\nРезультаты разделения:");
         Console.WriteLine($"Найдено предложений: {text.Sentences.Count}");
         
         text.PrintAllSentences();
         text.PrintAllWords();
+        
+        text.ExportToXml("text_export.xml");
         
         Console.WriteLine("\nНажмите любую клавишу для выхода");
         Console.ReadKey();

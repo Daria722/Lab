@@ -2,13 +2,9 @@
 
 public class Word : Token
 {
+    public Word() {}
     public Word(string value)
     {
         Value = value;
-    }
-
-    public override string ToString()
-    {
-        return Value;
     }
 }

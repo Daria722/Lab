@@ -1,8 +1,12 @@
-﻿namespace Lab3;
+﻿using System.Xml.Serialization;
+namespace Lab3;
 
+[XmlInclude(typeof(Word))]
+[XmlInclude(typeof(Punctuation))]
 public class Token
 {
-    public string Value { get; protected set; }
+    [XmlText]
+    public string Value { get; set; } = "";
 
     private static string _defaultText = "Привет!! Как дела? Это предложение... Разделение ";
     

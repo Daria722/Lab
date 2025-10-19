@@ -1,7 +1,11 @@
-﻿namespace Lab3;
+﻿using System.Xml.Serialization;
+namespace Lab3;
+
+[XmlRoot("Text")]
 
 public class Text
 {
+    [XmlElement("Sentence")]
     public List<Sentence> Sentences { get; private set; }
 
     public Text()
@@ -33,5 +37,16 @@ public class Text
                 Console.WriteLine($"Слово: {word}");
             }
         }
+    }
+    
+    // Метод для экспорта в XML
+    public void ExportToXml(string filePath)
+    {
+        var serializer = new XmlSerializer(typeof(Text));
+        using (var writer = new StreamWriter(filePath))
+        {
+            serializer.Serialize(writer, this);
+        }
+        Console.WriteLine($"Текст экспортирован в: {filePath}");
     }
 }

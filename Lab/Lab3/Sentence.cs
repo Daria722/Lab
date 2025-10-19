@@ -1,7 +1,10 @@
-﻿namespace Lab3;
+﻿using System.Xml.Serialization;
+namespace Lab3;
 
 public class Sentence
 {
+    [XmlElement("Word", Type = typeof(Word))]
+    [XmlElement("Punctuation", Type = typeof(Punctuation))]
     public List<Token> Tokens { get; private set; }
 
     public Sentence()
