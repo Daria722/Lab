@@ -1,9 +1,7 @@
 ﻿namespace Lab3;
 
-public class Punctuation
+public class Punctuation : Token
 {
-    public string Value { get; private set; }
-
     public Punctuation(string value)
     {
         Value = value;

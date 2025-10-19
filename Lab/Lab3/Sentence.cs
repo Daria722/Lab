@@ -2,53 +2,39 @@
 
 public class Sentence
 {
-    private List<object> _items;
+    public List<Token> Tokens { get; private set; }
 
     public Sentence()
     {
-        _items = new List<object>();
+        Tokens = new List<Token>();
     }
 
-    public void AddWord(Word word)
+    public void AddToken(Token token)
     {
-        _items.Add(word);
-    }
-
-    public void AddPunctuation(Punctuation punctuation)
-    {
-        _items.Add(punctuation);
+        Tokens.Add(token);
     }
 
     public List<Word> GetWords()
     {
-        var words = new List<Word>();
-        foreach (var item in _items)
-        {
-            if (item is Word word)
-            {
-                words.Add(word);
-            }
-        }
-
-        return words;
+        return Tokens.OfType<Word>().ToList();
     }
     
     public override string ToString()
     {
         var result = "";
-        foreach (var item in _items)
+        foreach (var token in Tokens)
         {
-            if (item is Word)
+            if (token is Word)
             {
                 if (!string.IsNullOrEmpty(result) && !result.EndsWith(" "))
                 {               
                     result += " ";
                 }
-                result += item.ToString();
+                result += token.ToString();
             }
-            else if (item is Punctuation)
+            else if (token is Punctuation)
             {
-                result += item.ToString();
+                result += token.ToString();
             }
         }
         return result;

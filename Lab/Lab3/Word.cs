@@ -1,9 +1,7 @@
 ﻿namespace Lab3;
 
-public class Word
+public class Word : Token
 {
-    public string Value { get; private set; }
-
     public Word(string value)
     {
         Value = value;
