@@ -1,52 +1,49 @@
-﻿using System.Xml.Serialization;
-namespace Lab3;
+﻿namespace Lab3;
 
-[XmlInclude(typeof(Word))]
-[XmlInclude(typeof(Punctuation))]
 public class Token
 {
-    [XmlText]
     public string Value { get; set; } = "";
-
-    private static string _defaultText = "Привет!! Как дела? Это предложение... Разделение ";
-    
-    public static string GetText()
-    {
-        return _defaultText;
-    }
     
     // Функция для разделения текста на предложения
     public static List<string>  SplitIntoSentences(string text)
     {
-        var sentences = new List<string>();
-        char[] sentenceSeparators = {'.', '?', '!', ';', '/'};
+        text = text.Replace("\r", " ").Replace("\n", " ");
+
+        List<string> sentences = new List<string>();
+        char[] Separators = {'.', '?', '!'};
         
         int start = 0;
         for (int i = 0; i < text.Length; i++)
         {
-            if (sentenceSeparators.Contains(text[i]))
+            if (Separators.Contains(text[i]))
             {
-                int j = i;
-                while (j < text.Length && sentenceSeparators.Contains(text[j]))
+                if (i + 2 < text.Length && text[i] == '.' && text[i + 1] == '.' && text[i + 2] == '.')
                 {
-                    j++;
+                    i += 2;
+                    continue;
                 }
                 
-                string sentence = text.Substring(start, j - start).Trim();
+                if (i + 1 < text.Length && Separators.Contains(text[i + 1]))
+                    continue;
+                
+                int next = i + 1;
+                while (next < text.Length && (text[next] == '"' || text[next] == '\'' || text[next] == ')' || text[next] == ' '))
+                    next++;
+                
+                string sentence = text.Substring(start, i - start + 1).Trim();
                 if (!string.IsNullOrEmpty(sentence))
-                {
                     sentences.Add(sentence);
-                }
-                start = j;
-                i = j + 1;
+                
+                start = next;
+                i = next - 1;
             }
         }
         if (start < text.Length)
         {
-            string lastSentence = text.Substring(start).Trim();
-            if (!string.IsNullOrEmpty(lastSentence))
+            string last = text.Substring(start).Trim();
+            if (!string.IsNullOrEmpty(last))
             {
-                sentences.Add(lastSentence);
+                sentences.Add(last);
             }
         }
         
@@ -54,11 +51,12 @@ public class Token
     }
     
     //Функция для разделения предложения на слова
-    public static List <Word> ParseSentenceWords(string sentenceText)
+    public static List <Token> ParseSentenceWords(string sentenceText)
     {
-        var words = new List<Word>();
+        List<Token> tokens = new List<Token>();
         string currentWord = "";
 
+        char[] punctuationChars = { '.', ',', '?', '!', ';', ':', '-', '(', ')', '[', ']', '{', '}', '"', '\'' };
         for (int i = 0; i < sentenceText.Length; i++)
         {
             char c = sentenceText[i];
@@ -68,65 +66,45 @@ public class Token
             }
             else
             {
-                if (!string.IsNullOrEmpty(currentWord))
+                if (currentWord.Length > 0)
                 {
-                    words.Add(new Word(currentWord));
+                    tokens.Add(new Word(currentWord));
                     currentWord = "";
+                }
+                
+                if (punctuationChars.Contains(c))
+                {
+                    tokens.Add(new Punctuation(c.ToString()));
                 }
             }
         }
-        if (!string.IsNullOrEmpty(currentWord))
-        {
-            words.Add(new Word(currentWord));
-        }
+        if (currentWord.Length > 0)
+            tokens.Add(new Word(currentWord));
 
-        return words;
+        return tokens;
     }
 
-    public static Text ParseText()
+    public static Text ParseText(string inputText)
     {
-        Text text = new Text();
-        string inputText = GetText();
+        Text text = new Text(inputText);
+        text.OriginalText = inputText;
         
-        if (string.IsNullOrEmpty(inputText))
-            return text;
+        List<string> sentenceStrings = Token.SplitIntoSentences(inputText);
         
-        List<string> sentencesList = SplitIntoSentences(inputText);
-        
-        foreach (string sentenceStr in sentencesList)
+        foreach (var sentenceStr in sentenceStrings)
         {
-            if (string.IsNullOrWhiteSpace(sentenceStr))
-                continue;
-
-            Sentence sentence = ParseSentence(sentenceStr);
-            text.AddSentence(sentence);
+            Sentence s = new Sentence();
+            List<Token> tokens = ParseSentenceWords(sentenceStr);
+                
+            foreach (var t in tokens) 
+                s.AddToken(t);
+            
+            text.AddSentence(s);
         }
         
-        return text;
+        return new Text(inputText);
     }
     
-    private static Sentence ParseSentence (string sentenceText)
-    {
-        Sentence sentence = new Sentence();
-        List<Word> words = ParseSentenceWords(sentenceText);
-        
-        foreach (Word word in words)
-        {
-            sentence.AddToken(word);
-        }
-        
-        foreach (char c in sentenceText)
-        {
-            char[] punctuationChars = { '.', '!', '?', ',', ';', ':', '-', '(', ')', '[', ']', '{', '}', '"', '\'' };
-            if (punctuationChars.Contains(c))
-            {
-                sentence.AddToken(new Punctuation(c.ToString()));
-            }
-        }
-
-        return sentence;
-    }
-
     public override string ToString()
     {
         return Value;

@@ -6,47 +6,226 @@ namespace Lab3;
 public class Text
 {
     [XmlElement("Sentence")]
-    public List<Sentence> Sentences { get; private set; }
+    public List<Sentence> Sentences { get; set; }
+    
+    [XmlElement("OriginalText")]
+    public string OriginalText  { get; set; }
 
+    public Text(string originalText)
+    {
+        OriginalText = originalText;
+        Sentences = new List<Sentence>();
+        ParseOriginalText();
+    }
+    
     public Text()
     {
         Sentences = new List<Sentence>();
+        OriginalText = string.Empty;
     }
 
     public void AddSentence(Sentence sentence)
     {
         Sentences.Add(sentence);
     }
-
-    public void PrintAllSentences()
+    
+    private void ParseOriginalText()
     {
-        Console.WriteLine("\nВсе предложения: ");
-        for (int i = 0; i < Sentences.Count; i++)
-        {
-            Console.WriteLine($"Предложение {i+1}: {Sentences[i]}");
-        }
-    }
+        if (string.IsNullOrEmpty(OriginalText)) return;
 
-    public void PrintAllWords()
-    {
-        Console.WriteLine("\nВсе слова текста: ");
-        foreach (var sentence in Sentences)
+        var sentenceStrings = Token.SplitIntoSentences(OriginalText);
+        foreach (var str in sentenceStrings)
         {
-            foreach (var word in sentence.GetWords())
-            {
-                Console.WriteLine($"Слово: {word}");
-            }
+            var s = new Sentence();
+            var tokens = Token.ParseSentenceWords(str);
+            foreach (var t in tokens)
+                s.AddToken(t);
+            Sentences.Add(s);
         }
     }
     
-    // Метод для экспорта в XML
-    public void ExportToXml(string filePath)
+    // Загрузка стоп-слов из файла
+    public static HashSet<string> LoadStopWords(string path)
     {
-        var serializer = new XmlSerializer(typeof(Text));
-        using (var writer = new StreamWriter(filePath))
+        HashSet<string> stopWords = new HashSet<string>();
+        if (File.Exists(path))
+        {
+            string[] lines = File.ReadAllLines(path);
+            foreach (string line in lines)
+            {
+                string word = line.Trim().ToLower();
+                if (word.Length > 0)
+                    stopWords.Add(word);
+            }
+        }
+        return stopWords;
+    }
+    
+    public void RefreshSentencesFromOriginalText()
+    {
+        Sentences.Clear();
+        ParseOriginalText();
+    }
+
+    // 1. Сортировка по количеству слов
+        public void SortByWordCount(string dir)
+        {
+            List<Sentence> sorted = new List<Sentence>(Sentences);
+            sorted.Sort(delegate(Sentence s1, Sentence s2)
+            {
+                return s1.GetWords().Count.CompareTo(s2.GetWords().Count);
+            });
+
+            string path = Path.Combine(dir, "1_sorted_by_wordcount.txt");
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                foreach (Sentence s in sorted)
+                {
+                    sw.WriteLine(s.ToString());
+                }
+            }
+            Console.WriteLine("Результат сохранён: 1_sorted_by_wordcount.txt");
+        }
+
+        // 2. Сортировка по длине предложения
+        public void SortBySentenceLength(string dir)
+        {
+            List<Sentence> sorted = new List<Sentence>(Sentences);
+            sorted.Sort(delegate(Sentence s1, Sentence s2)
+            {
+                return s1.ToString().Length.CompareTo(s2.ToString().Length);
+            });
+
+            string path = Path.Combine(dir, "2_sorted_by_length.txt");
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                foreach (Sentence s in sorted)
+                {
+                    sw.WriteLine(s.ToString());
+                }
+            }
+            Console.WriteLine("Результат сохранён: 2_sorted_by_length.txt");
+        }
+
+        // 3. Слова заданной длины в вопросительных предложениях
+        public void GetQuestionWords(int length, string dir)
+        {
+            HashSet<string> words = new HashSet<string>();
+
+            foreach (Sentence sentence in Sentences)
+            {
+                string text = sentence.ToString().Trim();
+                if (text.EndsWith("?"))
+                {
+                    foreach (Word w in sentence.GetWords())
+                    {
+                        if (w.Value.Length == length)
+                            words.Add(w.Value.ToLower());
+                    }
+                }
+            }
+
+            string path = Path.Combine(dir, "3_question_words.txt");
+            File.WriteAllLines(path, words);
+            Console.WriteLine("Результат сохранён: 3_question_words.txt");
+        }
+    
+        // 4. Удалить слова заданной длины, начинающиеся с согласной
+        public void RemoveWordsByLengthAndConsonant(int length, string dir)
+        {
+            string consonants = "бвгджзйклмнпрстфхцчшщbcdfghjklmnpqrstvwxyz";
+
+            foreach (Sentence sentence in Sentences)
+            {
+                List<Token> newTokens = new List<Token>();
+                foreach (Token token in sentence.Tokens)
+                {
+                    if (token is Word w)
+                    {
+                        char first = char.ToLower(w.Value[0]);
+                        if (w.Value.Length == length && consonants.Contains(first))
+                            continue; // пропускаем
+                    }
+                    newTokens.Add(token);
+                }
+                sentence.Tokens = newTokens;
+            }
+
+            string path = Path.Combine(dir, "4_removed_words.txt");
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                foreach (Sentence s in Sentences)
+                {
+                    sw.WriteLine(s.ToString());
+                }
+            }
+            Console.WriteLine("Результат сохранён: 4_removed_words.txt");
+        }
+
+        // 5. Заменить слова заданной длины в указанном предложении
+        public void ReplaceWordsInSentence(int index, int length, string newString, string dir)
+        {
+            if (index < 0 || index >= Sentences.Count)
+            {
+                Console.WriteLine("Некорректный номер предложения.");
+                return;
+            }
+
+            Sentence sentence = Sentences[index];
+            foreach (Word w in sentence.GetWords())
+            {
+                if (w.Value.Length == length)
+                    w.Value = newString;
+            }
+
+            string path = Path.Combine(dir, "5_replaced.txt");
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                foreach (Sentence s in Sentences)
+                {
+                    sw.WriteLine(s.ToString());
+                }
+            }
+            Console.WriteLine("Результат сохранён: 5_replaced.txt");
+        }
+
+        // 6. Удалить стоп-слова
+        public void RemoveStopWords(HashSet<string> stopWords, string dir)
+        {
+            foreach (Sentence sentence in Sentences)
+            {
+                List<Token> newTokens = new List<Token>();
+                foreach (Token token in sentence.Tokens)
+                {
+                    if (token is Word w)
+                    {
+                        if (stopWords.Contains(w.Value.ToLower()))
+                            continue; // пропускаем
+                    }
+                    newTokens.Add(token);
+                }
+                sentence.Tokens = newTokens;
+            }
+
+            string path = Path.Combine(dir, "6_no_stopwords.txt");
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                foreach (Sentence s in Sentences)
+                {
+                    sw.WriteLine(s.ToString());
+                }
+            }
+            Console.WriteLine("Результат сохранён: 6_no_stopwords.txt");
+        }
+    
+    // 7. Метод экспорта в XML
+    public void ExportToXml(string path)
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(Text));
+        using (StreamWriter writer = new StreamWriter(path))
         {
             serializer.Serialize(writer, this);
         }
-        Console.WriteLine($"Текст экспортирован в: {filePath}");
+        Console.WriteLine($"Текст экспортирован в: {path}");
     }
 }

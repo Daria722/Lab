@@ -5,7 +5,7 @@ public class Sentence
 {
     [XmlElement("Word", Type = typeof(Word))]
     [XmlElement("Punctuation", Type = typeof(Punctuation))]
-    public List<Token> Tokens { get; private set; }
+    public List<Token> Tokens { get; set; }
 
     public Sentence()
     {
@@ -19,27 +19,31 @@ public class Sentence
 
     public List<Word> GetWords()
     {
-        return Tokens.OfType<Word>().ToList();
+        List<Word> result = new List<Word>();
+        foreach (var token in Tokens)
+        {
+            if (token is Word word)
+                result.Add(word);
+        }
+        return result;
     }
     
     public override string ToString()
     {
-        var result = "";
+        string result = "";
         foreach (var token in Tokens)
         {
             if (token is Word)
             {
-                if (!string.IsNullOrEmpty(result) && !result.EndsWith(" "))
-                {               
-                    result += " ";
-                }
-                result += token.ToString();
+                if (result.Length > 0)
+                result += " ";
+                result += token.Value;
             }
             else if (token is Punctuation)
             {
-                result += token.ToString();
+                result += token.Value;
             }
         }
-        return result;
+        return result.Trim();
     }
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Sentence>
+    <Word>Привет</Word>
+    <Punctuation>!</Punctuation>
+    <Punctuation>!</Punctuation>
+  </Sentence>
+  <Sentence>
+    <Word>Как</Word>
+    <Word>дела</Word>
+    <Punctuation>?</Punctuation>
+  </Sentence>
+  <Sentence>
+    <Word>Это</Word>
+    <Word>предложение</Word>
+    <Punctuation>.</Punctuation>
+    <Punctuation>.</Punctuation>
+    <Punctuation>.</Punctuation>
+  </Sentence>
+  <Sentence>
+    <Word>Разделение</Word>
+  </Sentence>
+</Text>
