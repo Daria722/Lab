@@ -1,10 +1,12 @@
-﻿namespace Lab3;
+﻿using System.Xml.Serialization;
+namespace Lab3;
 
 public class Token
 {
+    [XmlText]
     public string Value { get; set; } = "";
     
-    // Функция для разделения текста на предложения
+    // Метод для разделения текста на предложения
     public static List<string>  SplitIntoSentences(string text)
     {
         text = text.Replace("\r", " ").Replace("\n", " ");
@@ -86,7 +88,7 @@ public class Token
 
     public static Text ParseText(string inputText)
     {
-        Text text = new Text(inputText);
+        Text text = new Text();
         text.OriginalText = inputText;
         
         List<string> sentenceStrings = Token.SplitIntoSentences(inputText);
@@ -102,7 +104,7 @@ public class Token
             text.AddSentence(s);
         }
         
-        return new Text(inputText);
+        return text;
     }
     
     public override string ToString()

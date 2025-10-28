@@ -44,23 +44,23 @@ class Program
             {
                 case "1" :
                     text.RefreshSentencesFromOriginalText();
-                    text.SortByWordCount(dir);
+                    text.SortByWordCount(dir, lang);
                     break;
                 case "2" :
                     text.RefreshSentencesFromOriginalText();
-                    text.SortBySentenceLength(dir);
+                    text.SortBySentenceLength(dir, lang);
                     break;
                 case "3" :
                     text.RefreshSentencesFromOriginalText();
                     Console.Write("Введите длину слова для поиска: ");
                     int lenQ = int.Parse(Console.ReadLine());
-                    text.GetQuestionWords(lenQ, dir);
+                    text.GetQuestionWords(lenQ, dir, lang);
                     break;
                 case "4" :
                     text.RefreshSentencesFromOriginalText();
                     Console.Write("Введите длину слова для удаления: ");
                     int lenR = int.Parse(Console.ReadLine());
-                    text.RemoveWordsByLengthAndConsonant(lenR, dir);
+                    text.RemoveWordsByLengthAndConsonant(lenR, dir, lang);
                     break;
                 case "5":
                     text.RefreshSentencesFromOriginalText();
@@ -70,16 +70,16 @@ class Program
                     int lenReplace = int.Parse(Console.ReadLine());
                     Console.Write("Введите подстроку для замены: ");
                     string newStr = Console.ReadLine();
-                    text.ReplaceWordsInSentence(index, lenReplace, newStr, dir);
+                    text.ReplaceWordsInSentence(index, lenReplace, newStr, dir, lang);
                     break;
                 case "6" :
                     text.RefreshSentencesFromOriginalText();
                     var stopWords = Text.LoadStopWords(stopFile);
-                    text.RemoveStopWords(stopWords, dir);
+                    text.RemoveStopWords(stopWords, dir, lang);
                     break;
                 case "7" :
                     text.RefreshSentencesFromOriginalText();
-                    text.ExportToXml(Path.Combine(dir,"exported_text.xml"));
+                    text.ExportToXml(dir, lang);
                     break;
                 case "0" :
                     running = false;
