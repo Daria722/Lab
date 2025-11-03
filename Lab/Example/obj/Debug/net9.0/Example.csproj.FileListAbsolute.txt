@@ -1,0 +1,15 @@
+C:\Projects C#\Lab\Example\bin\Debug\net9.0\Example.exe
+C:\Projects C#\Lab\Example\bin\Debug\net9.0\Example.deps.json
+C:\Projects C#\Lab\Example\bin\Debug\net9.0\Example.runtimeconfig.json
+C:\Projects C#\Lab\Example\bin\Debug\net9.0\Example.dll
+C:\Projects C#\Lab\Example\bin\Debug\net9.0\Example.pdb
+C:\Projects C#\Lab\Example\obj\Debug\net9.0\Example.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects C#\Lab\Example\obj\Debug\net9.0\Example.AssemblyInfoInputs.cache
+C:\Projects C#\Lab\Example\obj\Debug\net9.0\Example.AssemblyInfo.cs
+C:\Projects C#\Lab\Example\obj\Debug\net9.0\Example.csproj.CoreCompileInputs.cache
+C:\Projects C#\Lab\Example\obj\Debug\net9.0\Example.sourcelink.json
+C:\Projects C#\Lab\Example\obj\Debug\net9.0\Example.dll
+C:\Projects C#\Lab\Example\obj\Debug\net9.0\refint\Example.dll
+C:\Projects C#\Lab\Example\obj\Debug\net9.0\Example.pdb
+C:\Projects C#\Lab\Example\obj\Debug\net9.0\Example.genruntimeconfig.cache
+C:\Projects C#\Lab\Example\obj\Debug\net9.0\ref\Example.dll

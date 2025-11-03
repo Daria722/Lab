@@ -14,8 +14,6 @@ public class Text
     public Text(string originalText) : this()
     {
         OriginalText = originalText;
-        
-        ParseOriginalText();
     }
     
     public Text()
