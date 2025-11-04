@@ -223,4 +223,49 @@ public class Text
         }
         Console.WriteLine($"Текст экспортирован в: {filename}");
     }
+    
+    // 8. Метод для построения конкорданса
+    public void BuildConcordance(string dir, string lang)
+    {
+        Dictionary<string, (int count, SortedSet<int> lines)> concordance = new Dictionary<string, (int, SortedSet<int>)>();
+    
+        // Обрабатываем каждое предложение
+        for (int i = 0; i < Sentences.Count; i++)
+        {
+            int lineNumber = i + 1;
+            Sentence sentence = Sentences[i];
+        
+            foreach (Word word in sentence.GetWords())
+            {
+                string wordKey = word.Value.ToLower();
+            
+                if (!concordance.ContainsKey(wordKey))
+                {
+                    concordance[wordKey] = (0, new SortedSet<int>());
+                }
+            
+                // Увеличиваем счетчик и добавляем номер строки
+                var (count, lines) = concordance[wordKey];
+                concordance[wordKey] = (count + 1, lines);
+                concordance[wordKey].lines.Add(lineNumber);
+            }
+        }
+    
+        // Сортируем слова по алфавиту
+        var sortedWords = concordance.Keys.OrderBy(k => k);
+    
+        string path = Path.Combine(dir, $"concordance_{lang}.txt");
+        using (StreamWriter sw = new StreamWriter(path))
+        {
+            foreach (string word in sortedWords)
+            {
+                var (count, lines) = concordance[word];
+                string lineNumbers = string.Join(" ", lines);
+                
+                sw.WriteLine($"{word.PadRight(30)}{count}: {lineNumbers}");
+            }
+        }
+    
+        Console.WriteLine($"Конкорданс сохранён: concordance_{lang}.txt");
+    }
 }

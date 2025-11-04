@@ -34,6 +34,7 @@ class Program
             Console.WriteLine("5. Заменить слова заданной длины в указанном предложении");
             Console.WriteLine("6. Удалить стоп-слова");
             Console.WriteLine("7. Экспортировать текст в XML");
+            Console.WriteLine("8. Построить конкорданс");
             Console.WriteLine("0. Выход");
             Console.Write("Ваш выбор: ");
 
@@ -80,6 +81,10 @@ class Program
                 case "7" :
                     text.RefreshSentencesFromOriginalText();
                     text.ExportToXml(dir, lang);
+                    break;
+                case "8":
+                    text.RefreshSentencesFromOriginalText();
+                    text.BuildConcordance(dir, lang);
                     break;
                 case "0" :
                     running = false;
