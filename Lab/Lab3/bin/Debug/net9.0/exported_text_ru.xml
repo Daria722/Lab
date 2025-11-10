@@ -2,17 +2,14 @@
 <Text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Sentence>
     <Word>Привет</Word>
-    <Punctuation>!</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Ты</Word>
     <Word>замечал</Word>
-    <Punctuation>,</Punctuation>
     <Word>как</Word>
     <Word>события</Word>
     <Word>складываются</Word>
     <Word>так</Word>
-    <Punctuation>,</Punctuation>
     <Word>будто</Word>
     <Word>сама</Word>
     <Word>реальность</Word>
@@ -20,7 +17,8 @@
     <Word>под</Word>
     <Word>твои</Word>
     <Word>мысли</Word>
-    <Punctuation>?</Punctuation>
+    <Word>Как</Word>
+    <Word>так</Word>
   </Sentence>
   <Sentence>
     <Word>Каждый</Word>
@@ -28,7 +26,6 @@
     <Word>мы</Word>
     <Word>делаем</Word>
     <Word>выбор</Word>
-    <Punctuation>,</Punctuation>
     <Word>куда</Word>
     <Word>направить</Word>
     <Word>своё</Word>
@@ -38,7 +35,6 @@
     <Word>что</Word>
     <Word>сосредоточить</Word>
     <Word>энергию</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Почему</Word>
@@ -46,25 +42,21 @@
     <Word>люди</Word>
     <Word>достигают</Word>
     <Word>успеха</Word>
-    <Punctuation>,</Punctuation>
     <Word>а</Word>
     <Word>другие</Word>
     <Word>нет</Word>
-    <Punctuation>?</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Всё</Word>
     <Word>зависит</Word>
     <Word>от</Word>
     <Word>того</Word>
-    <Punctuation>,</Punctuation>
     <Word>как</Word>
     <Word>мы</Word>
     <Word>взаимодействуем</Word>
     <Word>с</Word>
     <Word>миром</Word>
     <Word>вокруг</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Если</Word>
@@ -74,17 +66,14 @@
     <Word>отношение</Word>
     <Word>к</Word>
     <Word>ситуации</Word>
-    <Punctuation>,</Punctuation>
     <Word>изменится</Word>
     <Word>и</Word>
     <Word>сама</Word>
     <Word>ситуация</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Что</Word>
     <Word>будет</Word>
-    <Punctuation>,</Punctuation>
     <Word>если</Word>
     <Word>ты</Word>
     <Word>перестанешь</Word>
@@ -95,35 +84,29 @@
     <Word>в</Word>
     <Word>потоке</Word>
     <Word>жизни</Word>
-    <Punctuation>?</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Возможно</Word>
-    <Punctuation>,</Punctuation>
     <Word>именно</Word>
     <Word>тогда</Word>
     <Word>начнёт</Word>
     <Word>происходить</Word>
     <Word>настоящее</Word>
     <Word>чудо</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Сосредоточься</Word>
     <Word>на</Word>
     <Word>желаемом</Word>
-    <Punctuation>,</Punctuation>
     <Word>но</Word>
     <Word>не</Word>
     <Word>зацикливайся</Word>
     <Word>на</Word>
     <Word>том</Word>
-    <Punctuation>,</Punctuation>
     <Word>что</Word>
     <Word>ещё</Word>
     <Word>не</Word>
     <Word>произошло</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Мир</Word>
@@ -131,13 +114,11 @@
     <Word>на</Word>
     <Word>твоё</Word>
     <Word>внимание</Word>
-    <Punctuation>,</Punctuation>
     <Word>а</Word>
     <Word>не</Word>
     <Word>на</Word>
     <Word>твои</Word>
     <Word>страхи</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Как</Word>
@@ -149,13 +130,11 @@
     <Word>проблемы</Word>
     <Word>на</Word>
     <Word>решение</Word>
-    <Punctuation>,</Punctuation>
     <Word>появляются</Word>
     <Word>новые</Word>
     <Word>идеи</Word>
     <Word>и</Word>
     <Word>вдохновение</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Пробуй</Word>
@@ -167,7 +146,6 @@
     <Word>они</Word>
     <Word>подсказывают</Word>
     <Word>путь</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Ты</Word>
@@ -175,21 +153,17 @@
     <Word>управлять</Word>
     <Word>своей</Word>
     <Word>реальностью</Word>
-    <Punctuation>,</Punctuation>
     <Word>если</Word>
     <Word>осознаешь</Word>
-    <Punctuation>,</Punctuation>
     <Word>что</Word>
     <Word>всё</Word>
     <Word>начинается</Word>
     <Word>с</Word>
     <Word>внутреннего</Word>
     <Word>состояния</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Лёгкость</Word>
-    <Punctuation>,</Punctuation>
     <Word>радость</Word>
     <Word>и</Word>
     <Word>внутренний</Word>
@@ -198,7 +172,6 @@
     <Word>фундамент</Word>
     <Word>для</Word>
     <Word>изменений</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Когда</Word>
@@ -208,50 +181,41 @@
     <Word>силу</Word>
     <Word>своих</Word>
     <Word>мыслей</Word>
-    <Punctuation>,</Punctuation>
     <Word>привычный</Word>
     <Word>мир</Word>
     <Word>постепенно</Word>
     <Word>меняется</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Люди</Word>
-    <Punctuation>,</Punctuation>
     <Word>которые</Word>
     <Word>раньше</Word>
     <Word>казались</Word>
     <Word>случайными</Word>
     <Word>прохожими</Word>
-    <Punctuation>,</Punctuation>
     <Word>вдруг</Word>
     <Word>становятся</Word>
     <Word>проводниками</Word>
     <Word>к</Word>
     <Word>новым</Word>
     <Word>возможностям</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>События</Word>
-    <Punctuation>,</Punctuation>
     <Word>что</Word>
     <Word>выглядели</Word>
     <Word>как</Word>
     <Word>препятствия</Word>
-    <Punctuation>,</Punctuation>
     <Word>раскрываются</Word>
     <Word>как</Word>
     <Word>скрытые</Word>
     <Word>уроки</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Всё</Word>
     <Word>складывается</Word>
     <Word>именно</Word>
     <Word>так</Word>
-    <Punctuation>,</Punctuation>
     <Word>как</Word>
     <Word>нужно</Word>
     <Word>тебе</Word>
@@ -261,7 +225,6 @@
     <Word>это</Word>
     <Word>кажется</Word>
     <Word>иначе</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Ты</Word>
@@ -269,7 +232,6 @@
     <Word>создателем</Word>
     <Word>своей</Word>
     <Word>реальности</Word>
-    <Punctuation>,</Punctuation>
     <Word>когда</Word>
     <Word>выбираешь</Word>
     <Word>смотреть</Word>
@@ -277,13 +239,11 @@
     <Word>происходящее</Word>
     <Word>с</Word>
     <Word>благодарностью</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Благодарность</Word>
     <Word>это</Word>
     <Word>ключ</Word>
-    <Punctuation>,</Punctuation>
     <Word>который</Word>
     <Word>открывает</Word>
     <Word>сердце</Word>
@@ -291,7 +251,6 @@
     <Word>наполняет</Word>
     <Word>жизнь</Word>
     <Word>смыслом</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Она</Word>
@@ -299,12 +258,10 @@
     <Word>ещё</Word>
     <Word>больше</Word>
     <Word>того</Word>
-    <Punctuation>,</Punctuation>
     <Word>за</Word>
     <Word>что</Word>
     <Word>стоит</Word>
     <Word>благодарить</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Иногда</Word>
@@ -312,15 +269,12 @@
     <Word>может</Word>
     <Word>казаться</Word>
     <Word>туманным</Word>
-    <Punctuation>,</Punctuation>
     <Word>и</Word>
     <Word>ты</Word>
     <Word>не</Word>
     <Word>видишь</Word>
-    <Punctuation>,</Punctuation>
     <Word>куда</Word>
     <Word>идёшь</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Но</Word>
@@ -338,7 +292,6 @@
     <Word>вместе</Word>
     <Word>с</Word>
     <Word>тобой</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Поток</Word>
@@ -347,7 +300,6 @@
     <Word>несёт</Word>
     <Word>тебя</Word>
     <Word>туда</Word>
-    <Punctuation>,</Punctuation>
     <Word>где</Word>
     <Word>твоя</Word>
     <Word>душа</Word>
@@ -355,16 +307,13 @@
     <Word>раскрыться</Word>
     <Word>сильнее</Word>
     <Word>всего</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Перестань</Word>
     <Word>спешить</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Остановись</Word>
-    <Punctuation>,</Punctuation>
     <Word>вдохни</Word>
     <Word>глубоко</Word>
     <Word>и</Word>
@@ -374,33 +323,27 @@
     <Word>всё</Word>
     <Word>в</Word>
     <Word>порядке</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Настоящий</Word>
     <Word>момент</Word>
     <Word>всегда</Word>
     <Word>совершенен</Word>
-    <Punctuation>,</Punctuation>
     <Word>каким</Word>
     <Word>бы</Word>
     <Word>он</Word>
     <Word>ни</Word>
     <Word>был</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>В</Word>
     <Word>нём</Word>
     <Word>нет</Word>
     <Word>страха</Word>
-    <Punctuation>,</Punctuation>
     <Word>нет</Word>
     <Word>сожаления</Word>
-    <Punctuation>,</Punctuation>
     <Word>нет</Word>
     <Word>сомнений</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Есть</Word>
@@ -408,13 +351,10 @@
     <Word>ты</Word>
     <Word>и</Word>
     <Word>жизнь</Word>
-    <Punctuation>,</Punctuation>
     <Word>которая</Word>
     <Word>мягко</Word>
     <Word>шепчет</Word>
-    <Punctuation>:</Punctuation>
     <Word>Доверься</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>И</Word>
@@ -423,22 +363,18 @@
     <Word>наконец</Word>
     <Word>отпускаешь</Word>
     <Word>контроль</Word>
-    <Punctuation>,</Punctuation>
     <Word>начинается</Word>
     <Word>самое</Word>
     <Word>настоящее</Word>
     <Word>волшебство</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>Ты</Word>
     <Word>чувствуешь</Word>
     <Word>лёгкость</Word>
-    <Punctuation>,</Punctuation>
     <Word>вдохновение</Word>
     <Word>и</Word>
     <Word>уверенность</Word>
-    <Punctuation>,</Punctuation>
     <Word>будто</Word>
     <Word>сама</Word>
     <Word>Вселенная</Word>
@@ -446,7 +382,6 @@
     <Word>тебя</Word>
     <Word>за</Word>
     <Word>руку</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
   <Sentence>
     <Word>И</Word>
@@ -459,30 +394,14 @@
     <Word>в</Word>
     <Word>нужное</Word>
     <Word>время</Word>
-    <Punctuation>,</Punctuation>
     <Word>с</Word>
     <Word>нужными</Word>
     <Word>людьми</Word>
-    <Punctuation>,</Punctuation>
     <Word>именно</Word>
     <Word>так</Word>
-    <Punctuation>,</Punctuation>
     <Word>как</Word>
     <Word>ты</Word>
     <Word>всегда</Word>
     <Word>мечтал</Word>
-    <Punctuation>.</Punctuation>
   </Sentence>
-  <OriginalText>Привет! Ты замечал, как события складываются так, будто сама реальность подстраивается под твои мысли? Каждый день мы делаем выбор, куда направить своё внимание и на что сосредоточить энергию. Почему одни люди достигают успеха, а другие нет? Всё зависит от того, как мы взаимодействуем с миром вокруг. Если ты изменишь своё отношение к ситуации, изменится и сама ситуация. Что будет, если ты перестанешь сопротивляться и начнёшь идти в потоке жизни? Возможно, именно тогда начнёт происходить настоящее чудо.
-
-Сосредоточься на желаемом, но не зацикливайся на том, что ещё не произошло. Мир откликается на твоё внимание, а не на твои страхи. Как только ты переключаешь внимание с проблемы на решение, появляются новые идеи и вдохновение. Пробуй замечать маленькие совпадения и синхроничности — они подсказывают путь. Ты способен управлять своей реальностью, если осознаешь, что всё начинается с внутреннего состояния. Лёгкость, радость и внутренний покой — вот фундамент для изменений.
-Когда ты начинаешь осознавать силу своих мыслей, привычный мир постепенно меняется. Люди, которые раньше казались случайными прохожими, вдруг становятся проводниками к новым возможностям. События, что выглядели как препятствия, раскрываются как скрытые уроки. Всё складывается именно так, как нужно тебе — даже если поначалу это кажется иначе.
-
-Ты становишься создателем своей реальности, когда выбираешь смотреть на происходящее с благодарностью. Благодарность — это ключ, который открывает сердце и наполняет жизнь смыслом. Она притягивает ещё больше того, за что стоит благодарить.
-
-Иногда путь может казаться туманным, и ты не видишь, куда идёшь. Но стоит лишь сделать один шаг вперёд — и пространство вокруг начинает двигаться вместе с тобой. Поток жизни всегда несёт тебя туда, где твоя душа может раскрыться сильнее всего.
-
-Перестань спешить. Остановись, вдохни глубоко и почувствуй — прямо сейчас всё в порядке. Настоящий момент всегда совершенен, каким бы он ни был. В нём нет страха, нет сожаления, нет сомнений. Есть только ты и жизнь, которая мягко шепчет: «Доверься».
-
-И когда ты наконец отпускаешь контроль, начинается самое настоящее волшебство. Ты чувствуешь лёгкость, вдохновение и уверенность, будто сама Вселенная держит тебя за руку. И тогда всё действительно начинает происходить само — в нужное время, с нужными людьми, именно так, как ты всегда мечтал.</OriginalText>
 </Text>

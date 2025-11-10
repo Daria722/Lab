@@ -3,18 +3,25 @@ namespace Lab3;
 
 public class Sentence
 {
-    [XmlElement("Word", Type = typeof(Word))]
-    [XmlElement("Punctuation", Type = typeof(Punctuation))]
+    [XmlElement("Word")]
+    public List <Word> Words { get; set; }
+    
+    [XmlIgnore]
     public List<Token> Tokens { get; set; }
 
     public Sentence()
     {
         Tokens = new List<Token>();
+        Words = new List<Word>();
     }
 
     public void AddToken(Token token)
     {
         Tokens.Add(token);
+        if (token is Word word)
+        {
+            Words.Add(word);
+        }
     }
 
     public List<Word> GetWords()

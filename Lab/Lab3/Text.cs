@@ -8,7 +8,7 @@ public class Text
     [XmlElement("Sentence")]
     public List<Sentence> Sentences { get; set; }
     
-    [XmlElement("OriginalText")]
+    [XmlIgnore]
     public string OriginalText  { get; set; }
 
     public Text(string originalText) : this()
@@ -141,6 +141,7 @@ public class Text
                     newTokens.Add(token);
                 }
                 sentence.Tokens = newTokens;
+                sentence.Words = sentence.GetWords();
             }
 
             string path = Path.Combine(dir, $"4_removed_words_{lang}.txt");
@@ -160,6 +161,7 @@ public class Text
             if (index < 0 || index >= Sentences.Count)
             {
                 Console.WriteLine("Некорректный номер предложения.");
+                //throw new ArgumentException("Некорректный номер");
                 return;
             }
 
@@ -197,6 +199,7 @@ public class Text
                     newTokens.Add(token);
                 }
                 sentence.Tokens = newTokens;
+                sentence.Words = sentence.GetWords();
             }
 
             string path = Path.Combine(dir, $"6_no_stopwords_{lang}.txt");
@@ -228,13 +231,20 @@ public class Text
     public void BuildConcordance(string dir, string lang)
     {
         Dictionary<string, (int count, SortedSet<int> lines)> concordance = new Dictionary<string, (int, SortedSet<int>)>();
-    
+        
+       // Dictionary<int, string> ggg = new Dictionary<int, string>();
+       //Dictionary<string, int> newDict = new Dictionary<string, int>();
+       //foreach (var item in ggg)
+       //{
+       //    newDict[item.Value] = item.Key;
+       //}
+       
         // Обрабатываем каждое предложение
         for (int i = 0; i < Sentences.Count; i++)
         {
             int lineNumber = i + 1;
             Sentence sentence = Sentences[i];
-        
+            
             foreach (Word word in sentence.GetWords())
             {
                 string wordKey = word.Value.ToLower();
@@ -243,26 +253,41 @@ public class Text
                 {
                     concordance[wordKey] = (0, new SortedSet<int>());
                 }
-            
+                
                 // Увеличиваем счетчик и добавляем номер строки
-                var (count, lines) = concordance[wordKey];
-                concordance[wordKey] = (count + 1, lines);
                 concordance[wordKey].lines.Add(lineNumber);
+                var current = concordance[wordKey];
+                concordance[wordKey] = (current.count + 1, current.lines); 
             }
         }
-    
-        // Сортируем слова по алфавиту
-        var sortedWords = concordance.Keys.OrderBy(k => k);
+
+        List<string> allWords = new List<string>(concordance.Keys);
+        allWords.Sort();
+        
     
         string path = Path.Combine(dir, $"concordance_{lang}.txt");
         using (StreamWriter sw = new StreamWriter(path))
         {
-            foreach (string word in sortedWords)
+            char currentLetter = '\0';
+            
+            foreach (string word in allWords)
             {
+                char start_simb = word[0];
+                
+                if (start_simb != currentLetter)
+                {
+                    if (currentLetter != '\0')
+                    {
+                        sw.WriteLine();
+                    }
+                    
+                    currentLetter = start_simb;
+                    sw.WriteLine(currentLetter.ToString().ToUpper() + ":");
+                }
+                
                 var (count, lines) = concordance[word];
                 string lineNumbers = string.Join(" ", lines);
-                
-                sw.WriteLine($"{word.PadRight(30)}{count}: {lineNumbers}");
+                sw.WriteLine($"{word.PadRight(28)}{count}: {lineNumbers}");
             }
         }
     
